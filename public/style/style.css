@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*hello.php*/
+.welcome{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+/*Login.php*/
+.navigation{
+    background-color: black;
+    width: 1920px;
+    height: 100px;
+}
+.navigation>a{
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+.login_form{
+    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+fieldset{
+    padding: 100px;
+}
+.login_form_in > fieldset > label,button{
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    max-width: 100px;
+    margin-top: 20px;
+}
+.login_form_in > fieldset >button{
+    width: 75px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 24px;
+}
+.login_form_in > fieldset > label > input{
+    height: 20px;
+    width: 150px;
+}
+
+/*signup.php*/
+.register_form{
+    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.register_form > form > fieldset{
+    max-width: 100px;
+}
+.register_form > form > fieldset > label,button{
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    max-width: 250px;
+    margin-top: 20px;
+}
+.register_form > form > fieldset > button{
+    width: 233px;
+}
+.register_form > form > fieldset > label > input,select{
+    height: 20px;
+    width: 150px;
+}
+.register_form > form > fieldset > label > select{
+    width: 120px;
+}
