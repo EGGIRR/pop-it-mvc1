@@ -11,6 +11,7 @@ use Src\View;
 use Src\Request;
 use Model\User;
 use Src\Auth\Auth;
+use Src\Validator\Validator;
 
 class Site
 {
@@ -24,15 +25,31 @@ class Site
     {
         return new View('site.hello');
     }
+
     public function signup(Request $request): string
     {
-
-        if ($request->method === 'POST' && User::create($request->all())) {
-            app()->route->redirect('/hello');
-        }
         $roles = Role::all();
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'name' => ['required'],
+                'login' => ['required', 'unique:users,login'],
+                'password' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View('site.signup',
+                    ['roles' => $roles,'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+            if (User::create($request->all())) {
+                app()->route->redirect('/hello');
+            }
+        }
         return new View('site.signup',['roles' => $roles]);
     }
+
     public function login(Request $request): string
     {
         //Если просто обращение к странице, то отобразить форму
@@ -52,6 +69,7 @@ class Site
         Auth::logout();
         app()->route->redirect('/hello');
     }
+
     public function add_employee(Request $request): string
     {
         if ($request->method === 'POST' && Employee::create($request->all())) {
@@ -64,8 +82,9 @@ class Site
         $structures = Structure::all();
 
         // Внедрение данных в представление
-        return new View('site.add_employee', ['departments' => $departments,'posts' => $posts,'structures' => $structures]);
+        return new View('site.add_employee', ['departments' => $departments, 'posts' => $posts, 'structures' => $structures]);
     }
+
     public function admin_add_employee(Request $request): string
     {
         if ($request->method === 'POST' && User::create($request->all())) {
@@ -77,6 +96,7 @@ class Site
         // Внедрение данных в представление
         return new View('site.admin_add_employee');
     }
+
     public function add_department(Request $request): string
     {
         if ($request->method === 'POST' && Department::create($request->all())) {
@@ -84,6 +104,7 @@ class Site
         }
         return new View('site.add_department');
     }
+
     public function add_post(Request $request): string
     {
         if ($request->method === 'POST' && Post::create($request->all())) {
@@ -91,6 +112,7 @@ class Site
         }
         return new View('site.add_post');
     }
+
     public function add_structure(Request $request): string
     {
         if ($request->method === 'POST' && Structure::create($request->all())) {
@@ -98,14 +120,17 @@ class Site
         }
         return new View('site.add_structure');
     }
+
     public function add(): string
     {
         return new View('site.add');
     }
+
     public function show(): string
     {
         return new View('site.show');
     }
+
     public function employee_show(): string
     {
         $departments = Department::all();
@@ -126,6 +151,7 @@ class Site
 
         return new View('site.employee_show', ['employees' => $employees, 'departments' => $departments, 'averageAge' => $averageAge]);
     }
+
     public function employee_structure(): string
     {
         $structures = Structure::all();
