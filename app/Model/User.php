@@ -14,7 +14,8 @@ class User extends Model implements IdentityInterface
    protected $fillable = [
        'name',
        'login',
-       'password'
+       'password',
+       'role_id'
    ];
 
    protected static function booted()
@@ -43,9 +44,9 @@ class User extends Model implements IdentityInterface
        return self::where(['login' => $credentials['login'],
            'password' => md5($credentials['password'])])->first();
    }
-    public function isAdmin(): bool
+    public function isAdmin()
     {
-        if ($this->role == 'admin') {
+        if ($this->role_id == 2) {
             return true;
         }
         return false;

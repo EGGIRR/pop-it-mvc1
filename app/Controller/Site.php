@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Role;
 use Model\Department;
 use Model\Employee;
 use Model\Post;
@@ -25,10 +26,12 @@ class Site
     }
     public function signup(Request $request): string
     {
+
         if ($request->method === 'POST' && User::create($request->all())) {
             app()->route->redirect('/hello');
         }
-        return new View('site.signup');
+        $roles = Role::all();
+        return new View('site.signup',['roles' => $roles]);
     }
     public function login(Request $request): string
     {
@@ -88,12 +91,25 @@ class Site
     {
         return new View('site.add');
     }
+    public function show(): string
+    {
+        return new View('site.show');
+    }
     public function employee_show(): string
     {
-        $employees = Employee::all();
+        $departments = Department::all();
+
+        // Проверка выбранных отделов
+        $selectedDepartments = $_POST['departments'] ?? [];
+
+        if (!empty($selectedDepartments)) {
+            $employees = Employee::whereIn('department_id', $selectedDepartments)->get();
+        } else {
+            $employees = Employee::all();
+        }
 
         // Внедрение данных в представление
-        return new View('site.employee_show', ['employees' => $employees]);
+        return new View('site.employee_show', ['employees' => $employees, 'departments' => $departments]);
     }
 
 }

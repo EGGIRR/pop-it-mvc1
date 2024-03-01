@@ -1,3 +1,14 @@
+<form method="post">
+    <label>Отделы: <br>
+        <select style="height: auto;" name="departments[]" multiple>
+            <?php foreach($departments as $department) {
+                ?>
+                <option value="<?php echo $department->id; ?>"><?php echo $department->name; ?></option>
+            <?php } ?>
+        </select>
+    </label>
+    <button>Выбрать</button>
+</form>
 <h1>Список сотрудников</h1>
 <ol>
     <?php
@@ -14,3 +25,4 @@
     }
     ?>
 </ol>
+

@@ -6,9 +6,12 @@
    <label>Логин <input type="text" name="login"></label>
    <label>Пароль <input type="password" name="password"></label>
     <label>Ваша роль
-        <select name="role">
-            <option value="employee">Сотрудник О.К.</option>
-            <option value="admin">Админ</option>
+        <select name="role_id">
+            <?php foreach($roles as $role)
+            {
+                ?>
+                <option value="<?php echo $role->id; ?>"><?php echo $role->name; ?></option>
+            <?php } ?>
         </select>
     </label>
    <button>Зарегистрироваться</button>
