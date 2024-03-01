@@ -26,7 +26,7 @@ class Site
     public function signup(Request $request): string
     {
         if ($request->method === 'POST' && User::create($request->all())) {
-            app()->route->redirect('/go');
+            app()->route->redirect('/hello');
         }
         return new View('site.signup');
     }
@@ -83,6 +83,17 @@ class Site
             app()->route->redirect('/hello');
         }
         return new View('site.add_structure');
+    }
+    public function add(): string
+    {
+        return new View('site.add');
+    }
+    public function employee_show(): string
+    {
+        $employees = Employee::all();
+
+        // Внедрение данных в представление
+        return new View('site.employee_show', ['employees' => $employees]);
     }
 
 }

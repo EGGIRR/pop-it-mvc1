@@ -76,3 +76,22 @@ fieldset{
 .register_form > form > fieldset > label > select{
     width: 120px;
 }
+
+.add_buttons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-left: 45%;
+}
+
+.add_buttons > button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+}
+.add_buttons > button > a{
+    text-decoration: none;
+    color: black;
+}

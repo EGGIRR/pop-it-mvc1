@@ -43,4 +43,12 @@ class User extends Model implements IdentityInterface
        return self::where(['login' => $credentials['login'],
            'password' => md5($credentials['password'])])->first();
    }
+    public function isAdmin(): bool
+    {
+        if ($this->role == 'admin') {
+            return true;
+        }
+        return false;
+    }
 }
+

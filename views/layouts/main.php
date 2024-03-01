@@ -20,6 +20,7 @@
        <?php
        else:
            ?>
+           <a style="position: absolute;top: 30px;left: 400px;" href="<?= app()->route->getUrl('/add') ?>">Добавление</a>
            <a style="position: absolute;top: 30px;left: 1700px;" href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
        <?php
        endif;
