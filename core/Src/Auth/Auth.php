@@ -51,6 +51,7 @@ class Auth
         return false;
     }
 
+
     //Выход текущего пользователя
     public static function logout(): bool
     {

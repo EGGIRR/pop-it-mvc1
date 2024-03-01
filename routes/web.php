@@ -14,3 +14,5 @@ Route::add(['GET', 'POST'], '/add_structure', [Controller\Site::class, 'add_stru
 Route::add(['GET'], '/add', [Controller\Site::class, 'add']);
 Route::add(['GET'], '/show', [Controller\Site::class, 'show']);
 Route::add(['GET','POST'], '/employee_show', [Controller\Site::class, 'employee_show']);
+Route::add(['GET','POST'], '/employee_structure', [Controller\Site::class, 'employee_structure'])
+    ->middleware('auth','admin');

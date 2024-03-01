@@ -6,9 +6,8 @@
             <label>Логин <input type="text" name="login"></label>
             <label>Пароль <input type="password" name="password"></label>
             <label>Ваша роль
-                <select name="role">
+                <select hidden="hidden" name="role">
                     <option value="employee">Сотрудник О.К.</option>
-                    <option value="admin">Админ</option>
                 </select>
             </label>
             <button>Зарегистрироваться</button>

@@ -95,3 +95,14 @@ fieldset{
     text-decoration: none;
     color: black;
 }
+
+.show_buttons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-left: 45%;
+}
+.show_buttons > button > a{
+    text-decoration: none;
+    color: black;
+}

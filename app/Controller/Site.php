@@ -98,8 +98,6 @@ class Site
     public function employee_show(): string
     {
         $departments = Department::all();
-
-        // Проверка выбранных отделов
         $selectedDepartments = $_POST['departments'] ?? [];
 
         if (!empty($selectedDepartments)) {
@@ -108,8 +106,27 @@ class Site
             $employees = Employee::all();
         }
 
-        // Внедрение данных в представление
-        return new View('site.employee_show', ['employees' => $employees, 'departments' => $departments]);
-    }
+        // Расчет среднего возраста
+        $totalAge = 0;
+        foreach ($employees as $employee) {
+            $totalAge += date_diff(date_create($employee->birthdate), date_create('today'))->y;
+        }
+        $averageAge = count($employees) > 0 ? round($totalAge / count($employees)) : 0;
 
+        return new View('site.employee_show', ['employees' => $employees, 'departments' => $departments, 'averageAge' => $averageAge]);
+    }
+    public function employee_structure(): string
+    {
+        $structures = Structure::all();
+        $selectedStructure = $_POST['structure'] ?? [];
+
+        if (!empty($selectedStructure)) {
+            $employees = Employee::whereIn('structure_id', $selectedStructure)->get();
+        } else {
+            $employees = Employee::all();
+        }
+
+
+        return new View('site.employee_structure', ['employees' => $employees, 'structures' => $structures]);
+    }
 }
