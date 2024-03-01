@@ -41,17 +41,31 @@ class Site
 
             if ($validator->fails()) {
                 return new View('site.signup',
-                    ['roles' => $roles,'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                    ['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
             if (User::create($request->all())) {
                 app()->route->redirect('/hello');
             }
         }
-        return new View('site.signup',['roles' => $roles]);
+        return new View('site.signup', ['roles' => $roles]);
     }
 
     public function login(Request $request): string
     {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'login' => ['required'],
+                'password' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View('site.login',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+        }
         //Если просто обращение к странице, то отобразить форму
         if ($request->method === 'GET') {
             return new View('site.login');
@@ -72,14 +86,32 @@ class Site
 
     public function add_employee(Request $request): string
     {
+        $departments = Department::all();
+        $posts = Post::all();
+        $structures = Structure::all();
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'fname' => ['required'],
+                'lname' => ['required'],
+                'patronymic' => ['required'],
+                'gender' => ['required'],
+                'birthdate' => ['required'],
+                'address' => ['required']
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View('site.add_employee',
+                    ['departments' => $departments, 'posts' => $posts, 'structures' => $structures,'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+        }
         if ($request->method === 'POST' && Employee::create($request->all())) {
             app()->route->redirect('/hello');
         }
 
         // Вызов метода для получения данных из другой таблицы
-        $departments = Department::all();
-        $posts = Post::all();
-        $structures = Structure::all();
 
         // Внедрение данных в представление
         return new View('site.add_employee', ['departments' => $departments, 'posts' => $posts, 'structures' => $structures]);
@@ -87,6 +119,21 @@ class Site
 
     public function admin_add_employee(Request $request): string
     {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'name' => ['required'],
+                'login' => ['required', 'unique:users,login'],
+                'password' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View('site.admin_add_employee',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+        }
         if ($request->method === 'POST' && User::create($request->all())) {
             app()->route->redirect('/hello');
         }
@@ -99,6 +146,19 @@ class Site
 
     public function add_department(Request $request): string
     {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'name' => ['required','unique:departments,name'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View('site.add_department',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+        }
         if ($request->method === 'POST' && Department::create($request->all())) {
             app()->route->redirect('/hello');
         }
@@ -107,6 +167,19 @@ class Site
 
     public function add_post(Request $request): string
     {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'name' => ['required','unique:posts,name'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View('site.add_post',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+        }
         if ($request->method === 'POST' && Post::create($request->all())) {
             app()->route->redirect('/hello');
         }
@@ -115,6 +188,19 @@ class Site
 
     public function add_structure(Request $request): string
     {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'name' => ['required','unique:structures,name'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View('site.add_structure',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+        }
         if ($request->method === 'POST' && Structure::create($request->all())) {
             app()->route->redirect('/hello');
         }

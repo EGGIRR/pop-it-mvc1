@@ -1,4 +1,5 @@
 <form method="post">
+    <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
     <label>Отделы: <br>
         <select style="height: auto;" name="departments[]" multiple>
             <?php foreach($departments as $department) {

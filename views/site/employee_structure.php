@@ -1,4 +1,5 @@
 <form method="post">
+    <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
     <label>Структуры: <br>
         <select style="height: auto;" name="structure[]" multiple>
             <?php foreach($structures as $structure) {

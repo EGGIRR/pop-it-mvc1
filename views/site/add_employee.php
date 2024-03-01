@@ -2,6 +2,8 @@
     <form method="post">
         <fieldset>
             <h2>Добавление сотрудника</h2>
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+            <pre><?= $message ?? ''; ?></pre>
             <label>Имя <input type="text" name="fname"></label>
             <label>Фамилия <input type="text" name="lname"></label>
             <label>Отчество <input type="text" name="patronymic"></label>
