@@ -66,6 +66,17 @@ class Site
         // Внедрение данных в представление
         return new View('site.add_employee', ['departments' => $departments,'posts' => $posts,'structures' => $structures]);
     }
+    public function admin_add_employee(Request $request): string
+    {
+        if ($request->method === 'POST' && User::create($request->all())) {
+            app()->route->redirect('/hello');
+        }
+
+        // Вызов метода для получения данных из другой таблицы
+
+        // Внедрение данных в представление
+        return new View('site.admin_add_employee');
+    }
     public function add_department(Request $request): string
     {
         if ($request->method === 'POST' && Department::create($request->all())) {
