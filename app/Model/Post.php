@@ -10,6 +10,6 @@ class Post extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'name'
+        'namе'
     ];
 }

@@ -16,6 +16,7 @@ class Employee extends Model
         'gender',
         'birthdate',
         'address',
+        'avatar',
         'post_id',
         'department_id',
         'structure_id'

@@ -15,6 +15,9 @@
             </label>
             <label>Дата рождения <input type="date" name="birthdate"></label>
             <label>Адрес прописки <input type="text" name="address"></label>
+            <label>Аватарка
+                <input type="file" name="avatar">
+            </label>
             <label>Должность
                 <select name="post_id">
                     <?php foreach($posts as $post)

@@ -101,10 +101,9 @@ class Site
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально'
             ]);
-
             if ($validator->fails()) {
                 return new View('site.add_employee',
-                    ['departments' => $departments, 'posts' => $posts, 'structures' => $structures,'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                    ['departments' => $departments, 'posts' => $posts, 'structures' => $structures, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
         }
         if ($request->method === 'POST' && Employee::create($request->all())) {
@@ -148,7 +147,7 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required','unique:departments,name'],
+                'name' => ['required', 'unique:departments,name'],
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально'
@@ -169,7 +168,7 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required','unique:posts,name'],
+                'name' => ['required', 'unique:posts,name'],
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально'
@@ -190,7 +189,7 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required','unique:structures,name'],
+                'name' => ['required', 'unique:structures,name'],
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально'
@@ -251,5 +250,16 @@ class Site
 
 
         return new View('site.employee_structure', ['employees' => $employees, 'structures' => $structures]);
+    }
+
+    public function search_employee(): string
+    {
+        $searchName = $_POST['employee'] ?? [];
+        if (!empty($searchName)) {
+            $employees = Employee::whereIn('fname', $searchName)->get();
+        }
+
+
+        return new View('site.search_employee', ['employees' => $employees]);
     }
 }
