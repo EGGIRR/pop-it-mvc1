@@ -105,9 +105,19 @@ class Site
                 return new View('site.add_employee',
                     ['departments' => $departments, 'posts' => $posts, 'structures' => $structures, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
-        }
-        if ($request->method === 'POST' && Employee::create($request->all())) {
-            app()->route->redirect('/hello');
+            $uploadDirectory = 'images/';
+            if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+                $avatar = $_FILES['avatar'];
+                $filename = $uploadDirectory . basename($avatar['name']);
+                if (move_uploaded_file($avatar['tmp_name'], $filename)) {
+                    echo "Файл успешно загружен.";
+                } else {
+                    echo "Ошибка при сохранении файла.";
+                }
+            }
+            if (Employee::create($request->all())) {
+                app()->route->redirect('/hello');
+            }
         }
 
         // Вызов метода для получения данных из другой таблицы
@@ -256,10 +266,10 @@ class Site
     {
         $searchName = $_POST['employee'] ?? [];
         if (!empty($searchName)) {
-            $employees = Employee::whereIn('fname', $searchName)->get();
+            $employees = Employee::where('fname', $searchName)->get();
+        } else {
+            $employees = Employee::all();
         }
-
-
         return new View('site.search_employee', ['employees' => $employees]);
     }
 }

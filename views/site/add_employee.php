@@ -1,5 +1,5 @@
 <div class="employee_form">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <fieldset>
             <h2>Добавление сотрудника</h2>
             <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
@@ -16,7 +16,7 @@
             <label>Дата рождения <input type="date" name="birthdate"></label>
             <label>Адрес прописки <input type="text" name="address"></label>
             <label>Аватарка
-                <input type="file" name="avatar">
+                <input type="file" name="avatar"><br>
             </label>
             <label>Должность
                 <select name="post_id">
