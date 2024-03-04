@@ -9,8 +9,8 @@
             <label>Отчество <input type="text" name="patronymic"></label>
             <label>Пол
                 <select name="gender">
-                    <option value="0">Женщина</option>
-                    <option value="1">Мужчина</option>
+                    <option value="1">Женщина</option>
+                    <option value="2">Мужчина</option>
                 </select>
             </label>
             <label>Дата рождения <input type="date" name="birthdate"></label>

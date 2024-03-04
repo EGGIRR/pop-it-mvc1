@@ -31,12 +31,15 @@ class Site
         $roles = Role::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required'],
+                'name' => ['required', 'not_number', 'russian'],
                 'login' => ['required', 'unique:users,login'],
                 'password' => ['required'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'russian' => 'Поле :field должно содержать только русский алфавит',
+                'number' => 'Поле :field должно содержать только цифры',
+                'not_number' => 'Поле :field должно содержать только буквы'
             ]);
 
             if ($validator->fails()) {
@@ -58,7 +61,10 @@ class Site
                 'password' => ['required'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'russian' => 'Поле :field должно содержать только русский алфавит',
+                'number' => 'Поле :field должно содержать только цифры',
+                'not_number' => 'Поле :field должно содержать только буквы'
             ]);
 
             if ($validator->fails()) {
@@ -91,15 +97,20 @@ class Site
         $structures = Structure::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'fname' => ['required'],
-                'lname' => ['required'],
-                'patronymic' => ['required'],
+                'fname' => ['required', 'not_number', 'russian'],
+                'lname' => ['required', 'not_number', 'russian'],
+                'patronymic' => ['required', 'not_number', 'russian'],
                 'gender' => ['required'],
                 'birthdate' => ['required'],
-                'address' => ['required']
+                'address' => ['required'],
+                'avatar' => ['required','fileType']
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'russian' => 'Поле :field должно содержать только русский алфавит',
+                'number' => 'Поле :field должно содержать только цифры',
+                'not_number' => 'Поле :field должно содержать только буквы',
+                'fileType' => 'Поле :field должно быть в формате: img,jpeg или jpg',
             ]);
             if ($validator->fails()) {
                 return new View('site.add_employee',
@@ -110,6 +121,7 @@ class Site
                 $avatar = $_FILES['avatar'];
                 $filename = $uploadDirectory . basename($avatar['name']);
                 if (move_uploaded_file($avatar['tmp_name'], $filename)) {
+                    $request->set('avatar', $filename);
                     echo "Файл успешно загружен.";
                 } else {
                     echo "Ошибка при сохранении файла.";
@@ -130,12 +142,15 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required'],
+                'name' => ['required', 'russian', 'not_number'],
                 'login' => ['required', 'unique:users,login'],
                 'password' => ['required'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'russian' => 'Поле :field должно содержать только русский алфавит',
+                'number' => 'Поле :field должно содержать только цифры',
+                'not_number' => 'Поле :field должно содержать только буквы'
             ]);
 
             if ($validator->fails()) {
@@ -157,10 +172,13 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required', 'unique:departments,name'],
+                'name' => ['required', 'unique:departments,name', 'russian'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'russian' => 'Поле :field должно содержать только русский алфавит',
+                'number' => 'Поле :field должно содержать только цифры',
+                'not_number' => 'Поле :field должно содержать только буквы'
             ]);
 
             if ($validator->fails()) {
@@ -181,7 +199,10 @@ class Site
                 'name' => ['required', 'unique:posts,name'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'russian' => 'Поле :field должно содержать только русский алфавит',
+                'number' => 'Поле :field должно содержать только цифры',
+                'not_number' => 'Поле :field должно содержать только буквы'
             ]);
 
             if ($validator->fails()) {
@@ -202,7 +223,10 @@ class Site
                 'name' => ['required', 'unique:structures,name'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'russian' => 'Поле :field должно содержать только русский алфавит',
+                'number' => 'Поле :field должно содержать только цифры',
+                'not_number' => 'Поле :field должно содержать только буквы'
             ]);
 
             if ($validator->fails()) {

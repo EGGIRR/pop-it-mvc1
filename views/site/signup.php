@@ -7,15 +7,9 @@
         <label>Имя <input type="text" name="name"></label>
    <label>Логин <input type="text" name="login"></label>
    <label>Пароль <input type="password" name="password"></label>
-    <label>Ваша роль
-        <select name="role_id">
-            <?php foreach($roles as $role)
-            {
-                ?>
-                <option value="<?php echo $role->id; ?>"><?php echo $role->name; ?></option>
-            <?php } ?>
+        <select hidden="hidden" name="role_id">
+                <option value="2"</option>
         </select>
-    </label>
    <button>Зарегистрироваться</button>
     </fieldset>
 </form>

@@ -20,7 +20,7 @@
         echo '<p>Пол: ' . $employee->gender . '</p>';
         echo '<p>Дата рождения: ' . $employee->birthdate . '</p>';
         echo '<p>Адрес проживания: ' . $employee->address . '</p>';
-        echo '<img src="images/' . $employee->avatar . '" alt="Аватарка">';
+        echo '<img style="width: 50px;" src="' . $employee->avatar . '" alt="Аватарка">';
         echo '<p>Должность: ' . $employee->post_id . '</p>';
         echo '<p>Отдел: ' . $employee->department_id . '</p>';
         echo '<p>Структура: ' . $employee->structure_id . '</p>';
