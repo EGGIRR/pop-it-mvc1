@@ -10,7 +10,7 @@ class Department extends Model
    use HasFactory;
    public $timestamps = false;
     protected $fillable = [
-        'namе',
+        'name',
         'type'
     ];
 }

@@ -110,7 +110,7 @@ class Site
                 'russian' => 'Поле :field должно содержать только русский алфавит',
                 'number' => 'Поле :field должно содержать только цифры',
                 'not_number' => 'Поле :field должно содержать только буквы',
-                'fileType' => 'Поле :field должно быть в формате: img,jpeg или jpg',
+                'fileType' => 'Поле :field должно быть в формате: png,jpeg или jpg',
             ]);
             if ($validator->fails()) {
                 return new View('site.add_employee',
@@ -172,7 +172,8 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required', 'unique:departments,name', 'russian'],
+                'name' => ['required', 'russian'],
+                'type' => ['required']
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально',
@@ -185,9 +186,10 @@ class Site
                 return new View('site.add_department',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
-        }
-        if ($request->method === 'POST' && Department::create($request->all())) {
-            app()->route->redirect('/hello');
+
+            if (Department::create($request->all())) {
+                app()->route->redirect('/hello');
+            }
         }
         return new View('site.add_department');
     }
@@ -209,9 +211,10 @@ class Site
                 return new View('site.add_post',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
-        }
-        if ($request->method === 'POST' && Post::create($request->all())) {
-            app()->route->redirect('/hello');
+
+            if (Post::create($request->all())) {
+                app()->route->redirect('/hello');
+            }
         }
         return new View('site.add_post');
     }
@@ -220,7 +223,7 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required', 'unique:structures,name'],
+                'name' => ['required'],
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально',
@@ -233,9 +236,10 @@ class Site
                 return new View('site.add_structure',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
-        }
-        if ($request->method === 'POST' && Structure::create($request->all())) {
+
+        if (Structure::create($request->all())) {
             app()->route->redirect('/hello');
+        }
         }
         return new View('site.add_structure');
     }
