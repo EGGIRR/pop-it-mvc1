@@ -11,8 +11,8 @@ class ImageValidator extends AbstractValidator
 
     public function rule(): bool
     {
-        $type_valid = ['image/jpeg','image/jpg','image/png'];
-        $value  = $_FILES['avatar']['type'];
+        $type_valid = ['image/jpeg', 'image/jpg', 'image/png'];
+        $value = $_FILES['avatar']['type'];
         return in_array($value, $type_valid);
     }
 }

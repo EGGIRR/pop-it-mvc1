@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 01 2024 г., 18:14
+-- Время создания: Мар 04 2024 г., 16:47
 -- Версия сервера: 10.4.32-MariaDB
 -- Версия PHP: 8.2.12
 
@@ -56,6 +56,7 @@ CREATE TABLE `employees` (
   `gender` tinyint(1) NOT NULL,
   `birthdate` date NOT NULL,
   `address` varchar(100) NOT NULL,
+  `avatar` varchar(255) NOT NULL,
   `post_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
   `structure_id` int(11) NOT NULL
@@ -65,9 +66,8 @@ CREATE TABLE `employees` (
 -- Дамп данных таблицы `employees`
 --
 
-INSERT INTO `employees` (`id`, `fname`, `lname`, `patronymic`, `gender`, `birthdate`, `address`, `post_id`, `department_id`, `structure_id`) VALUES
-(2, 'Алексей', 'солдатов', 'Романович', 1, '2001-05-02', 'Южка 29', 2, 3, 2),
-(3, 'Владислав', 'Гришаненко', 'Евгеньевич', 1, '2004-08-18', 'Красноярская 51', 2, 4, 4);
+INSERT INTO `employees` (`id`, `fname`, `lname`, `patronymic`, `gender`, `birthdate`, `address`, `avatar`, `post_id`, `department_id`, `structure_id`) VALUES
+(27, 'Владислав', 'Гришаненко', 'Евгеньевич', 2, '2004-08-18', 'Красноярская 51', 'images/Да.png', 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -145,16 +145,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `login`, `password`, `role_id`) VALUES
-(5, 'Владислав', 'eggi', '202cb962ac59075b964b07152d234b70', 1),
-(6, 'Владислав', 'eggirr', '202cb962ac59075b964b07152d234b70', 2),
-(11, 'Влад', 'vlad', '202cb962ac59075b964b07152d234b70', 1),
-(12, 'Ada', 'ada', '202cb962ac59075b964b07152d234b70', 2),
-(14, '', '', 'd41d8cd98f00b204e9800998ecf8427e', 1),
-(17, 'Владислав', 'vla1', '202cb962ac59075b964b07152d234b70', 1),
-(21, 'Влад', 'sa', '202cb962ac59075b964b07152d234b70', 1),
-(22, 'Владислав', 'ad', '202cb962ac59075b964b07152d234b70', 1),
-(23, '&lt;script&gt;alert()&lt;/script&gt;', '&lt;script&gt;alert()&lt;/script&gt;', '202cb962ac59075b964b07152d234b70', 1),
-(25, 'Владислав', 'gr', '202cb962ac59075b964b07152d234b70', 1);
+(26, 'Владислав', 'eggi', '202cb962ac59075b964b07152d234b70', 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -215,7 +206,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT для таблицы `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
@@ -233,7 +224,7 @@ ALTER TABLE `structures`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

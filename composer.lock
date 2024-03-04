@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2abf7752045fec93b3c6b2167026ce59",
+    "content-hash": "61d24554fa4c7b3817ce459afb2e4f0d",
     "packages": [
         {
             "name": "brick/math",
@@ -225,6 +225,83 @@
                 }
             ],
             "time": "2024-02-18T21:47:00+00:00"
+        },
+        {
+            "name": "eggir/collect",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EGGIRR/collect.git",
+                "reference": "2f7993ea342c83b35ada9ff5e1a4fce8ad059fe9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EGGIRR/collect/zipball/2f7993ea342c83b35ada9ff5e1a4fce8ad059fe9",
+                "reference": "2f7993ea342c83b35ada9ff5e1a4fce8ad059fe9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 | ^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Collect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "eggirr",
+                    "email": "vlad.grishanenko.g@mail.ru"
+                }
+            ],
+            "description": "Module for working with arrays",
+            "support": {
+                "issues": "https://github.com/EGGIRR/collect/issues",
+                "source": "https://github.com/EGGIRR/collect/tree/master"
+            },
+            "time": "2024-03-04T15:44:00+00:00"
+        },
+        {
+            "name": "eggirr/string",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EGGIRR/string.git",
+                "reference": "c6cab3f9e14d8c091e46052147ebe21c0931db03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EGGIRR/string/zipball/c6cab3f9e14d8c091e46052147ebe21c0931db03",
+                "reference": "c6cab3f9e14d8c091e46052147ebe21c0931db03",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "eggirr",
+                    "email": "vlad.grishanenko.g@mail.ru"
+                }
+            ],
+            "description": "library for working with strings",
+            "support": {
+                "issues": "https://github.com/EGGIRR/string/issues",
+                "source": "https://github.com/EGGIRR/string/tree/master"
+            },
+            "time": "2024-03-04T15:42:45+00:00"
         },
         {
             "name": "illuminate/bus",
@@ -558,12 +635,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
-                "reference": "8d84d6220a6b3446a0bf3e4138e2eb0e10792bb1"
+                "reference": "a931bfa88edc6ac52c9abbfd7b769343d321d3eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/8d84d6220a6b3446a0bf3e4138e2eb0e10792bb1",
-                "reference": "8d84d6220a6b3446a0bf3e4138e2eb0e10792bb1",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/a931bfa88edc6ac52c9abbfd7b769343d321d3eb",
+                "reference": "a931bfa88edc6ac52c9abbfd7b769343d321d3eb",
                 "shasum": ""
             },
             "require": {
@@ -605,7 +682,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-10-30T00:59:35+00:00"
+            "time": "2024-03-04T14:41:04+00:00"
         },
         {
             "name": "illuminate/macroable",
@@ -1582,13 +1659,14 @@
     "stability-flags": {
         "illuminate/database": 20,
         "illuminate/events": 20,
-        "nikic/fast-route": 20
+        "nikic/fast-route": 20,
+        "eggir/collect": 20,
+        "eggirr/string": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4 | ^8.0",
-        "ext-fileinfo": "*"
+        "php": "^7.4 | ^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
