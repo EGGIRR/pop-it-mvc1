@@ -172,7 +172,7 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required', 'russian'],
+                'name' => ['required','unique:departments,name', 'russian'],
                 'type' => ['required']
             ], [
                 'required' => 'Поле :field пусто',
@@ -223,7 +223,7 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required'],
+                'name' => ['required','unique:structures,name'],
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально',
