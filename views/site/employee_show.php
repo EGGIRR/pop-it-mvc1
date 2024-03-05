@@ -13,6 +13,7 @@
 <h1>Список сотрудников</h1>
 <ol>
     <?php
+    echo $employees2;
     foreach ($employees as $employee) {
         echo '<p>Имя: ' . $employee->fname . '</p>';
         echo '<p>Фамилия: ' . $employee->lname . '</p>';

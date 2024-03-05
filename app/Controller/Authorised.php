@@ -8,7 +8,7 @@ use Model\Post;
 use Model\Structure;
 use Src\View;
 use Src\Request;
-use Src\Validator\Validator;
+use Validator\Validator;
 
 class Authorised
 {
@@ -141,14 +141,14 @@ class Authorised
         } else {
             $employees = Employee::all();
         }
-
+        $employees2 = count($employees);
         $totalAge = 0;
         foreach ($employees as $employee) {
             $totalAge += date_diff(date_create($employee->birthdate), date_create('today'))->y;
         }
         $averageAge = count($employees) > 0 ? round($totalAge / count($employees)) : 0;
 
-        return new View('site.employee_show', ['employees' => $employees, 'departments' => $departments, 'averageAge' => $averageAge]);
+        return new View('site.employee_show', ['employees' => $employees, 'departments' => $departments, 'averageAge' => $averageAge, 'employees2' => $employees2]);
     }
 
     public function employee_structure(): string

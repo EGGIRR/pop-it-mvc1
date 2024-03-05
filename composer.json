@@ -16,7 +16,8 @@
         "illuminate/events": "^10.0@dev",
         "nikic/fast-route": "^2.0@dev",
         "eggir/collect": "dev-master",
-        "eggirr/string": "dev-master"
+        "eggirr/string": "dev-master",
+        "eggirr/validator": "dev-master"
     },
     "autoload": {
         "psr-4": {

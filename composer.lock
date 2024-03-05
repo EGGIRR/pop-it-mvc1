@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61d24554fa4c7b3817ce459afb2e4f0d",
+    "content-hash": "402c24151b0999d93716e3e03604588e",
     "packages": [
         {
             "name": "brick/math",
@@ -304,6 +304,47 @@
             "time": "2024-03-04T15:42:45+00:00"
         },
         {
+            "name": "eggirr/validator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EGGIRR/validator.git",
+                "reference": "dd78531fcb5dbeece6c4482b1f0220db1ec3957e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EGGIRR/validator/zipball/dd78531fcb5dbeece6c4482b1f0220db1ec3957e",
+                "reference": "dd78531fcb5dbeece6c4482b1f0220db1ec3957e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 | ^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Validator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladislav",
+                    "email": "vlad.grishanenko.gg@gmail.com"
+                }
+            ],
+            "description": "Library for validation",
+            "support": {
+                "issues": "https://github.com/EGGIRR/validator/issues",
+                "source": "https://github.com/EGGIRR/validator/tree/master"
+            },
+            "time": "2024-03-05T01:53:19+00:00"
+        },
+        {
             "name": "illuminate/bus",
             "version": "10.x-dev",
             "source": {
@@ -362,12 +403,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "dd0c652dfac0901c17bcfac94fe792e615b56e12"
+                "reference": "7bc2e907285b6a38acb3b386dcc577b185bf3d73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/dd0c652dfac0901c17bcfac94fe792e615b56e12",
-                "reference": "dd0c652dfac0901c17bcfac94fe792e615b56e12",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/7bc2e907285b6a38acb3b386dcc577b185bf3d73",
+                "reference": "7bc2e907285b6a38acb3b386dcc577b185bf3d73",
                 "shasum": ""
             },
             "require": {
@@ -409,7 +450,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-21T14:18:14+00:00"
+            "time": "2024-03-04T18:11:18+00:00"
         },
         {
             "name": "illuminate/conditionable",
@@ -562,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "48783ae1764180574eb44db63d8cfc9962079385"
+                "reference": "385a67f5351be38c5c6f28d58f7d76cbaffcaa02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/48783ae1764180574eb44db63d8cfc9962079385",
-                "reference": "48783ae1764180574eb44db63d8cfc9962079385",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/385a67f5351be38c5c6f28d58f7d76cbaffcaa02",
+                "reference": "385a67f5351be38c5c6f28d58f7d76cbaffcaa02",
                 "shasum": ""
             },
             "require": {
@@ -627,7 +668,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-29T17:35:00+00:00"
+            "time": "2024-03-04T21:32:24+00:00"
         },
         {
             "name": "illuminate/events",
@@ -962,12 +1003,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "0e4448becf138690c6cbdc521175b07c2412c238"
+                "reference": "d3ada013d0f683ad2a8d0614fc97917a6ab72ce9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/0e4448becf138690c6cbdc521175b07c2412c238",
-                "reference": "0e4448becf138690c6cbdc521175b07c2412c238",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/d3ada013d0f683ad2a8d0614fc97917a6ab72ce9",
+                "reference": "d3ada013d0f683ad2a8d0614fc97917a6ab72ce9",
                 "shasum": ""
             },
             "require": {
@@ -1016,9 +1057,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/FastRoute/issues",
-                "source": "https://github.com/nikic/FastRoute/tree/master"
+                "source": "https://github.com/nikic/FastRoute/tree/2.0.0-beta1"
             },
-            "time": "2024-02-06T21:23:15+00:00"
+            "time": "2024-03-04T23:46:43+00:00"
         },
         {
             "name": "psr/clock",
@@ -1661,7 +1702,8 @@
         "illuminate/events": 20,
         "nikic/fast-route": 20,
         "eggir/collect": 20,
-        "eggirr/string": 20
+        "eggirr/string": 20,
+        "eggirr/validator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

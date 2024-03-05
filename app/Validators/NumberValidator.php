@@ -2,7 +2,7 @@
 
 namespace Validators;
 
-use Src\Validator\AbstractValidator;
+use Validator\AbstractValidator;
 
 class NumberValidator extends AbstractValidator
 {
