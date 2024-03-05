@@ -8,6 +8,7 @@ use Src\Request;
 use Model\User;
 use Src\Auth\Auth;
 use Validator\Validator;
+use Validators\ValidationRules;
 
 class Site
 {
@@ -15,30 +16,35 @@ class Site
     {
         return new View('site.hello');
     }
+    public function signupTest(Request $request): string
+    {
+        $roles = Role::all();
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), ValidationRules::getRules('signup'), ValidationRules::getMessages());
 
+
+            if ($validator->fails()) {
+                return json_encode(['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+            if (User::create($request->all())) {
+                app()->route->redirect('/login');
+            }
+        }
+        return json_encode(['roles' => $roles]);
+    }
     public function signup(Request $request): string
     {
         $roles = Role::all();
         if ($request->method === 'POST') {
-//            $validator = new Validator($request->all(), [
-//                'name' => ['required', 'not_number', 'russian'],
-//                'login' => ['required', 'unique:users,login'],
-//                'password' => ['required'],
-//            ], [
-//                'required' => 'Поле :field пусто',
-//                'unique' => 'Поле :field должно быть уникально',
-//                'russian' => 'Поле :field должно содержать только русский алфавит',
-//                'number' => 'Поле :field должно содержать только цифры',
-//                'not_number' => 'Поле :field должно содержать только буквы'
-//            ]);
-//
-//            if ($validator->fails()) {
-//                return new View('site.signup',
-//                    ['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-//            }
+            $validator = new Validator($request->all(), ValidationRules::getRules('signup'), ValidationRules::getMessages());
+
+
+            if ($validator->fails()) {
+                return new View('site.signup',
+                    ['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
             if (User::create($request->all())) {
                 app()->route->redirect('/login');
-                return false;
             }
         }
         return new View('site.signup', ['roles' => $roles]);
@@ -47,16 +53,7 @@ class Site
     public function login(Request $request): string
     {
         if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'login' => ['required'],
-                'password' => ['required'],
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
-                'russian' => 'Поле :field должно содержать только русский алфавит',
-                'number' => 'Поле :field должно содержать только цифры',
-                'not_number' => 'Поле :field должно содержать только буквы'
-            ]);
+            $validator = new Validator($request->all(), ValidationRules::getRules('login'), ValidationRules::getMessages());
 
             if ($validator->fails()) {
                 return new View('site.login',

@@ -1,21 +1,20 @@
 <?php
 
-use Model\User;
+use Model\Department;
 use PHPUnit\Framework\TestCase;
+use Validators\ValidationRules;
 
-class SiteTest extends TestCase
+class AddDepartmentTest extends TestCase
 {
 
 
     /**
      * @dataProvider additionProvider
-     * @runInSeparateProcess
      */
-    public function testSignup(string $httpMethod, array $userData): void
+    public function testAddDepartment(string $httpMethod, array $userData): void
     {
-        //Выбираем занятый логин из базы данных
         if ($userData['login'] === 'login is busy') {
-            $userData['login'] = User::get()->first()->login;
+            $userData['login'] = Department::get()->first()->name;
         }
 
         // Создаем заглушку для класса Request.
@@ -27,25 +26,25 @@ class SiteTest extends TestCase
         $request->method = $httpMethod;
 
         //Сохраняем результат работы метода в переменную
-        $result = (new \Controller\Site())->signupTest($request);
+        $result = (new \Controller\Authorised())->addDepartmentTest($request);
+
 
         //Проверяем добавился ли пользователь в базу данных
-        $this->assertTrue((bool)User::where('login', $userData['login'])->count());
+        $this->assertTrue((bool)Department::where('name', $userData['name'])->count());
         //Удаляем созданного пользователя из базы данных
-        User::where('login', $userData['login'])->delete();
+        Department::where('name', $userData['name'])->delete();
     }
-
 
 
 //Метод, возвращающий набор тестовых данных
     public static function additionProvider(): array
     {
         return [
-            ['POST', ['name' => 'Владислав', 'login' => 'eggi', 'password' => '123','role_id' => '2']
+            ['POST', ['name' => 'Отдел на', 'type' => 'Внутренний']
             ],
-            ['POST', ['name' => 'Владислав', 'login' => 'eggi2', 'password' => '123','role_id' => '2']
+            ['POST', ['name' => 'Отдел научной теории', 'type' => 'Внутренний']
             ],
-            ['POST', ['name' => 'admin', 'login' => 'eggi3', 'password' => '123','role_id' => '2']
+            ['POST', ['name' => 'Department', 'type' => 'Внутренний']
             ],
         ];
 

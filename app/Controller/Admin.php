@@ -6,23 +6,15 @@ use Src\View;
 use Src\Request;
 use Model\User;
 use Validator\Validator;
+use Validators\ValidationRules;
 
 class Admin
 {
     public function adminAddEmployee(Request $request): string
     {
         if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'name' => ['required', 'russian', 'not_number'],
-                'login' => ['required', 'unique:users,login'],
-                'password' => ['required'],
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
-                'russian' => 'Поле :field должно содержать только русский алфавит',
-                'number' => 'Поле :field должно содержать только цифры',
-                'not_number' => 'Поле :field должно содержать только буквы'
-            ]);
+            $validator = new Validator($request->all(), ValidationRules::getRules('signup'), ValidationRules::getMessages());
+
 
             if ($validator->fails()) {
                 return new View('admin.adminAddEmployee',

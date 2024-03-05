@@ -9,6 +9,8 @@ use Model\Structure;
 use Src\View;
 use Src\Request;
 use Validator\Validator;
+use Validators\Image;
+use Validators\ValidationRules;
 
 class Authorised
 {
@@ -18,34 +20,15 @@ class Authorised
         $posts = Post::all();
         $structures = Structure::all();
         if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'fname' => ['required', 'not_number', 'russian'],
-                'lname' => ['required', 'not_number', 'russian'],
-                'patronymic' => ['required', 'not_number', 'russian'],
-                'gender' => ['required'],
-                'birthdate' => ['required'],
-                'address' => ['required'],
-                'avatar' => ['required', 'fileType']
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
-                'russian' => 'Поле :field должно содержать только русский алфавит',
-                'number' => 'Поле :field должно содержать только цифры',
-                'not_number' => 'Поле :field должно содержать только буквы',
-                'fileType' => 'Поле :field должно быть в формате: png,jpeg или jpg',
-            ]);
+            $validator = new Validator($request->all(), ValidationRules::getRules('addEmployee'), ValidationRules::getMessages());
+
             if ($validator->fails()) {
                 return new View('authorised.addEmployee',
                     ['departments' => $departments, 'posts' => $posts, 'structures' => $structures, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
-            $uploadDirectory = 'images/';
-            if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
-                $avatar = $_FILES['avatar'];
-                $filename = $uploadDirectory . basename($avatar['name']);
-                if (move_uploaded_file($avatar['tmp_name'], $filename)) {
-                    $request->set('avatar', $filename);
-                }
-            }
+
+            Image::uploadFile($request, 'images/');
+
             if (Employee::create($request->all())) {
                 app()->route->redirect('/hello');
             }
@@ -55,44 +38,58 @@ class Authorised
         return new View('authorised.addEmployee', ['departments' => $departments, 'posts' => $posts, 'structures' => $structures]);
     }
 
+    public function addDepartmentTest(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), ValidationRules::getRules('addDepartment'), ValidationRules::getMessages());
+
+            if ($validator->fails()) {
+                return json_encode(['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+            if (Department::create($request->all())) {
+                app()->route->redirect('/hello');
+            }
+        }
+        return false;
+    }
+//    public function signupTest(Request $request): string
+//    {
+//        $roles = Role::all();
+//        if ($request->method === 'POST') {
+//            $validator = new Validator($request->all(), ValidationRules::getRules('signup'), ValidationRules::getMessages());
+//
+//
+//            if ($validator->fails()) {
+//                return json_encode(['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+//            }
+//            if (User::create($request->all())) {
+//                app()->route->redirect('/login');
+//            }
+//        }
+//        return json_encode(['roles' => $roles]);
+//    }
     public function addDepartment(Request $request): string
     {
         if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'name' => ['required', 'unique:departments,name', 'russian'],
-                'type' => ['required']
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
-                'russian' => 'Поле :field должно содержать только русский алфавит',
-                'number' => 'Поле :field должно содержать только цифры',
-                'not_number' => 'Поле :field должно содержать только буквы'
-            ]);
+            $validator = new Validator($request->all(), ValidationRules::getRules('addDepartment'), ValidationRules::getMessages());
 
             if ($validator->fails()) {
                 return new View('authorised.addDepartment',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
-
             if (Department::create($request->all())) {
                 app()->route->redirect('/hello');
+                return false;
             }
         }
-        return new View('authorised.addDepartment');
+        return (new View())->render('authorised.addDepartment');
     }
 
     public function addPost(Request $request): string
     {
         if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'name' => ['required', 'unique:posts,name'],
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
-                'russian' => 'Поле :field должно содержать только русский алфавит',
-                'number' => 'Поле :field должно содержать только цифры',
-                'not_number' => 'Поле :field должно содержать только буквы'
-            ]);
+            $validator = new Validator($request->all(), ValidationRules::getRules('addPost'), ValidationRules::getMessages());
+
 
             if ($validator->fails()) {
                 return new View('authorised.addPost',
@@ -109,15 +106,8 @@ class Authorised
     public function addStructure(Request $request): string
     {
         if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'name' => ['required', 'unique:structures,name'],
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
-                'russian' => 'Поле :field должно содержать только русский алфавит',
-                'number' => 'Поле :field должно содержать только цифры',
-                'not_number' => 'Поле :field должно содержать только буквы'
-            ]);
+            $validator = new Validator($request->all(), ValidationRules::getRules('addStructure'), ValidationRules::getMessages());
+
 
             if ($validator->fails()) {
                 return new View('authorised.addStructure',

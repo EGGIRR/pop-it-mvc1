@@ -1,7 +1,7 @@
 <div class="department_form">
     <form method="post">
         <fieldset>
-            <pre><?= $message ?? ''; ?></pre>
+            <h3><?= $message ?? ''; ?></h3>
             <h2>Добавление отдела</h2>
             <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label>Название <input type="text" name="name"></label>
