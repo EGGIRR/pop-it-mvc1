@@ -9,7 +9,7 @@ use Validator\Validator;
 
 class Admin
 {
-    public function admin_add_employee(Request $request): string
+    public function adminAddEmployee(Request $request): string
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
@@ -25,7 +25,7 @@ class Admin
             ]);
 
             if ($validator->fails()) {
-                return new View('site.admin_add_employee',
+                return new View('admin.adminAddEmployee',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
@@ -34,6 +34,6 @@ class Admin
             }
         }
 
-        return new View('site.admin_add_employee');
+        return new View('admin.adminAddEmployee');
     }
 }

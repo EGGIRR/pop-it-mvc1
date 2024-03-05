@@ -1,28 +1,29 @@
 {
-    "name": "eggirr/pop-it-mvc1",
-    "description": "Practice project",
-    "type": "project",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Vladislav",
-            "email": "vlad.grishanenko.gg@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": "^7.4 | ^8.0",
-        "illuminate/database": "^10.0@dev",
-        "illuminate/events": "^10.0@dev",
-        "nikic/fast-route": "^2.0@dev",
-        "eggir/collect": "dev-master",
-        "eggirr/string": "dev-master",
-        "eggirr/validator": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "Src\\": "core/Src/",
-            "": "app/"
-        }
+  "name": "eggirr/pop-it-mvc1",
+  "description": "Practice project",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vladislav",
+      "email": "vlad.grishanenko.gg@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.4 | ^8.0",
+    "illuminate/database": "^10.0@dev",
+    "illuminate/events": "^10.0@dev",
+    "nikic/fast-route": "^2.0@dev",
+    "eggir/collect": "dev-master",
+    "eggirr/string": "dev-master",
+    "eggirr/validator": "dev-master",
+    "phpunit/phpunit": "10.5.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Src\\": "core/Src/",
+      "": "app/"
+    }
+  }
 }

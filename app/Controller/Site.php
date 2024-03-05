@@ -20,24 +20,25 @@ class Site
     {
         $roles = Role::all();
         if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'name' => ['required', 'not_number', 'russian'],
-                'login' => ['required', 'unique:users,login'],
-                'password' => ['required'],
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
-                'russian' => 'Поле :field должно содержать только русский алфавит',
-                'number' => 'Поле :field должно содержать только цифры',
-                'not_number' => 'Поле :field должно содержать только буквы'
-            ]);
-
-            if ($validator->fails()) {
-                return new View('site.signup',
-                    ['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-            }
+//            $validator = new Validator($request->all(), [
+//                'name' => ['required', 'not_number', 'russian'],
+//                'login' => ['required', 'unique:users,login'],
+//                'password' => ['required'],
+//            ], [
+//                'required' => 'Поле :field пусто',
+//                'unique' => 'Поле :field должно быть уникально',
+//                'russian' => 'Поле :field должно содержать только русский алфавит',
+//                'number' => 'Поле :field должно содержать только цифры',
+//                'not_number' => 'Поле :field должно содержать только буквы'
+//            ]);
+//
+//            if ($validator->fails()) {
+//                return new View('site.signup',
+//                    ['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+//            }
             if (User::create($request->all())) {
-                app()->route->redirect('/hello');
+                app()->route->redirect('/login');
+                return false;
             }
         }
         return new View('site.signup', ['roles' => $roles]);

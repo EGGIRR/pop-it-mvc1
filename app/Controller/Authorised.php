@@ -12,7 +12,7 @@ use Validator\Validator;
 
 class Authorised
 {
-    public function add_employee(Request $request): string
+    public function addEmployee(Request $request): string
     {
         $departments = Department::all();
         $posts = Post::all();
@@ -35,7 +35,7 @@ class Authorised
                 'fileType' => 'Поле :field должно быть в формате: png,jpeg или jpg',
             ]);
             if ($validator->fails()) {
-                return new View('site.add_employee',
+                return new View('authorised.addEmployee',
                     ['departments' => $departments, 'posts' => $posts, 'structures' => $structures, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
             $uploadDirectory = 'images/';
@@ -52,10 +52,10 @@ class Authorised
         }
 
 
-        return new View('site.add_employee', ['departments' => $departments, 'posts' => $posts, 'structures' => $structures]);
+        return new View('authorised.addEmployee', ['departments' => $departments, 'posts' => $posts, 'structures' => $structures]);
     }
 
-    public function add_department(Request $request): string
+    public function addDepartment(Request $request): string
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
@@ -70,7 +70,7 @@ class Authorised
             ]);
 
             if ($validator->fails()) {
-                return new View('site.add_department',
+                return new View('authorised.addDepartment',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
@@ -78,10 +78,10 @@ class Authorised
                 app()->route->redirect('/hello');
             }
         }
-        return new View('site.add_department');
+        return new View('authorised.addDepartment');
     }
 
-    public function add_post(Request $request): string
+    public function addPost(Request $request): string
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
@@ -95,7 +95,7 @@ class Authorised
             ]);
 
             if ($validator->fails()) {
-                return new View('site.add_post',
+                return new View('authorised.addPost',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
@@ -103,10 +103,10 @@ class Authorised
                 app()->route->redirect('/hello');
             }
         }
-        return new View('site.add_post');
+        return new View('authorised.addPost');
     }
 
-    public function add_structure(Request $request): string
+    public function addStructure(Request $request): string
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
@@ -120,7 +120,7 @@ class Authorised
             ]);
 
             if ($validator->fails()) {
-                return new View('site.add_structure',
+                return new View('authorised.addStructure',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
@@ -128,10 +128,10 @@ class Authorised
                 app()->route->redirect('/hello');
             }
         }
-        return new View('site.add_structure');
+        return new View('authorised.addStructure');
     }
 
-    public function employee_show(): string
+    public function employeeShow(): string
     {
         $departments = Department::all();
         $selectedDepartments = $_POST['departments'] ?? [];
@@ -148,10 +148,10 @@ class Authorised
         }
         $averageAge = count($employees) > 0 ? round($totalAge / count($employees)) : 0;
 
-        return new View('site.employee_show', ['employees' => $employees, 'departments' => $departments, 'averageAge' => $averageAge, 'employees2' => $employees2]);
+        return new View('authorised.employeeShow', ['employees' => $employees, 'departments' => $departments, 'averageAge' => $averageAge, 'employees2' => $employees2]);
     }
 
-    public function employee_structure(): string
+    public function employeeStructure(): string
     {
         $structures = Structure::all();
         $selectedStructure = $_POST['structure'] ?? [];
@@ -163,10 +163,10 @@ class Authorised
         }
 
 
-        return new View('site.employee_structure', ['employees' => $employees, 'structures' => $structures]);
+        return new View('authorised.employeeStructure', ['employees' => $employees, 'structures' => $structures]);
     }
 
-    public function search_employee(): string
+    public function searchEmployee(): string
     {
         $searchName = $_POST['employee'] ?? [];
         if (!empty($searchName)) {
@@ -174,6 +174,6 @@ class Authorised
         } else {
             $employees = Employee::all();
         }
-        return new View('site.search_employee', ['employees' => $employees]);
+        return new View('authorised.searchEmployee', ['employees' => $employees]);
     }
 }
