@@ -13,7 +13,7 @@ class AddDepartmentTest extends TestCase
      */
     public function testAddDepartment(string $httpMethod, array $userData,string $message): void
     {
-        if ($userData['name'] === 'login is busy') {
+        if ($userData['name'] === 'name is busy') {
             $userData['name'] = Department::get()->first()->name;
         }
 
@@ -24,15 +24,13 @@ class AddDepartmentTest extends TestCase
             ->method('all')
             ->willReturn($userData);
         $request->method = $httpMethod;
-
         //Сохраняем результат работы метода в переменную
-        $result = (new \Controller\Authorised())->addDepartmentTest($request);
-        $decodedResult = json_decode($result);
+        $result = (new \Controller\Authorised())->addDepartment($request);
 
-        if (!empty($decodedResult)) {
-            // Преобразование декодированного сообщения обратно в JSON для сравнения
-            $decodedMessage2 = mb_convert_encoding($decodedResult->message, 'utf8', 'auto');
-            $this->assertEquals($message, $decodedMessage2);
+        if (!empty($result)) {
+            //Проверяем варианты с ошибками валидации
+            $message = '/' . preg_quote($message, '/') . '/';
+            $this->expectOutputRegex($message);
             return;
         }
 
@@ -48,10 +46,10 @@ class AddDepartmentTest extends TestCase
     {
         return [
             ['POST', ['name' => '', 'type' => 'Внутренний'],
-                '{"name":["Поле name пусто","Поле name должно содержать только русский алфавит"]}'
+                '<h3>{"name":["Поле name пусто","Поле name должно содержать только русский алфавит"]}</h3>'
             ],
             ['POST', ['name' => 'Department', 'type' => 'Внутренний'],
-                '{"name":["Поле name должно содержать только русский алфавит"]}',
+                '<h3>{"name":["Поле name должно содержать только русский алфавит"]}</h3>',
             ],
         ];
 
@@ -60,13 +58,13 @@ class AddDepartmentTest extends TestCase
     protected function setUp(): void
     {
         //Установка переменной среды
-        $_SERVER['DOCUMENT_ROOT'] = '.';
+        $_SERVER['DOCUMENT_ROOT'] = '/srv/users/gihbdmnb/nvryybs-m4';
 
         //Создаем экземпляр приложения
         $GLOBALS['app'] = new Src\Application(new Src\Settings([
-            'app' => include $_SERVER['DOCUMENT_ROOT'] . '/config/app.php',
-            'db' => include $_SERVER['DOCUMENT_ROOT'] . '/config/db.php',
-            'path' => include $_SERVER['DOCUMENT_ROOT'] . '/config/path.php',
+            'app' => include $_SERVER['DOCUMENT_ROOT'] . '/pop-it-mvc1/config/app.php',
+            'db' => include $_SERVER['DOCUMENT_ROOT'] . '/pop-it-mvc1/config/db.php',
+            'path' => include $_SERVER['DOCUMENT_ROOT'] . '/pop-it-mvc1/config/path.php',
         ]));
 
 

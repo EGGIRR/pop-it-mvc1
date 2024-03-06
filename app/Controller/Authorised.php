@@ -34,24 +34,9 @@ class Authorised
             }
         }
 
-
         return new View('authorised.addEmployee', ['departments' => $departments, 'posts' => $posts, 'structures' => $structures]);
     }
 
-    public function addDepartmentTest(Request $request): string
-    {
-        if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), ValidationRules::getRules('addDepartment'), ValidationRules::getMessages());
-
-            if ($validator->fails()) {
-                return json_encode(['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-            }
-            if (Department::create($request->all())) {
-                app()->route->redirect('/hello');
-            }
-        }
-        return false;
-    }
 
     public function addDepartment(Request $request): string
     {
@@ -64,9 +49,9 @@ class Authorised
             }
             if (Department::create($request->all())) {
                 app()->route->redirect('/hello');
-                return false;
             }
         }
+        //var_dump((new View())->render('authorised.addDepartment')); die();
         return (new View())->render('authorised.addDepartment');
     }
 

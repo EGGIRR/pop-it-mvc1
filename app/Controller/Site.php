@@ -16,22 +16,6 @@ class Site
     {
         return new View('site.hello');
     }
-    public function signupTest(Request $request): string
-    {
-        $roles = Role::all();
-        if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), ValidationRules::getRules('signup'), ValidationRules::getMessages());
-
-
-            if ($validator->fails()) {
-                return json_encode(['roles' => $roles, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-            }
-            if (User::create($request->all())) {
-                app()->route->redirect('/login');
-            }
-        }
-        return json_encode(['roles' => $roles]);
-    }
     public function signup(Request $request): string
     {
         $roles = Role::all();
