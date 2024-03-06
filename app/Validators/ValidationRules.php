@@ -29,7 +29,7 @@ class ValidationRules
                 ];
             case 'addDepartment':
                 return [
-                    'name' => ['required', 'unique:departments,name', 'not_number', 'russian'],
+                    'name' => ['required', 'unique:departments,name', 'not_number'],
                     'type' => ['required'],
                 ];
             case 'addPost':
@@ -38,7 +38,7 @@ class ValidationRules
                 ];
             case 'addStructure':
                 return [
-                    'name' => ['required', 'unique:structures,name', 'not_number', 'russian'],
+                    'name' => ['required', 'unique:structures,name', 'not_number'],
                 ];
             // Add more cases for different contexts as needed
             default:

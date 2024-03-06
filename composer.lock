@@ -1629,12 +1629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0cef856509bab2512dc1595af6776d455b0c5ea7"
+                "reference": "15b2ae8d7ed6a6d9f523d99b7803a12a104a4f0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0cef856509bab2512dc1595af6776d455b0c5ea7",
-                "reference": "0cef856509bab2512dc1595af6776d455b0c5ea7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/15b2ae8d7ed6a6d9f523d99b7803a12a104a4f0d",
+                "reference": "15b2ae8d7ed6a6d9f523d99b7803a12a104a4f0d",
                 "shasum": ""
             },
             "require": {
@@ -1722,7 +1722,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-05T16:04:03+00:00"
+            "time": "2024-03-06T06:50:56+00:00"
         },
         {
             "name": "psr/clock",
