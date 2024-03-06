@@ -1128,12 +1128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "70c96493b4caa5514b45429ec5fe6f412ea6cde6"
+                "reference": "139676794dc1e9231bf7bcd123cfc0c99182cb13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/70c96493b4caa5514b45429ec5fe6f412ea6cde6",
-                "reference": "70c96493b4caa5514b45429ec5fe6f412ea6cde6",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/139676794dc1e9231bf7bcd123cfc0c99182cb13",
+                "reference": "139676794dc1e9231bf7bcd123cfc0c99182cb13",
                 "shasum": ""
             },
             "require": {
@@ -1177,9 +1177,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/master"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.2"
             },
-            "time": "2024-03-02T17:59:44+00:00"
+            "time": "2024-03-05T20:51:40+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -1629,12 +1629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6a42e5eb7fee7a3f98ca010650ae32ec5957b6cc"
+                "reference": "0cef856509bab2512dc1595af6776d455b0c5ea7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6a42e5eb7fee7a3f98ca010650ae32ec5957b6cc",
-                "reference": "6a42e5eb7fee7a3f98ca010650ae32ec5957b6cc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0cef856509bab2512dc1595af6776d455b0c5ea7",
+                "reference": "0cef856509bab2512dc1595af6776d455b0c5ea7",
                 "shasum": ""
             },
             "require": {
@@ -1722,7 +1722,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-03T12:44:00+00:00"
+            "time": "2024-03-05T16:04:03+00:00"
         },
         {
             "name": "psr/clock",

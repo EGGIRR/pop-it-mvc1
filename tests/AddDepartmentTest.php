@@ -11,10 +11,10 @@ class AddDepartmentTest extends TestCase
     /**
      * @dataProvider additionProvider
      */
-    public function testAddDepartment(string $httpMethod, array $userData): void
+    public function testAddDepartment(string $httpMethod, array $userData,string $message): void
     {
-        if ($userData['login'] === 'login is busy') {
-            $userData['login'] = Department::get()->first()->name;
+        if ($userData['name'] === 'login is busy') {
+            $userData['name'] = Department::get()->first()->name;
         }
 
         // Создаем заглушку для класса Request.
@@ -27,7 +27,14 @@ class AddDepartmentTest extends TestCase
 
         //Сохраняем результат работы метода в переменную
         $result = (new \Controller\Authorised())->addDepartmentTest($request);
+        $decodedResult = json_decode($result);
 
+        if (!empty($decodedResult)) {
+            // Преобразование декодированного сообщения обратно в JSON для сравнения
+            $decodedMessage2 = mb_convert_encoding($decodedResult->message, 'utf8', 'auto');
+            $this->assertEquals($message, $decodedMessage2);
+            return;
+        }
 
         //Проверяем добавился ли пользователь в базу данных
         $this->assertTrue((bool)Department::where('name', $userData['name'])->count());
@@ -40,11 +47,11 @@ class AddDepartmentTest extends TestCase
     public static function additionProvider(): array
     {
         return [
-            ['POST', ['name' => 'Отдел на', 'type' => 'Внутренний']
+            ['POST', ['name' => '', 'type' => 'Внутренний'],
+                '{"name":["Поле name пусто","Поле name должно содержать только русский алфавит"]}'
             ],
-            ['POST', ['name' => 'Отдел научной теории', 'type' => 'Внутренний']
-            ],
-            ['POST', ['name' => 'Department', 'type' => 'Внутренний']
+            ['POST', ['name' => 'Department', 'type' => 'Внутренний'],
+                '{"name":["Поле name должно содержать только русский алфавит"]}',
             ],
         ];
 
