@@ -41,6 +41,10 @@ class Api
     public function login(Request $request)
     {
         if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), ValidationRules::getRules('login'), ValidationRules::getMessages());
+            if ($validator->fails()) {
+                (new View())->toJSON(['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
             if (Auth::attempt($request->all())) {
                 $token = app()->auth::generateToken();
                 Auth::user()->update([
@@ -70,15 +74,11 @@ class Api
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), ValidationRules::getRules('addDepartment'), ValidationRules::getMessages());
-            if (Auth::check()) {
-                if ($validator->fails()) {
-                    (new View())->toJSON(['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-                }
-                if (Department::create($request->all())) {
-                    (new View())->toJSON((array)'Отдел создан');
-                }
-            } else {
-                (new View())->toJSON((array)'Не доступно');
+            if ($validator->fails()) {
+                (new View())->toJSON(['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+            if (Department::create($request->all())) {
+                (new View())->toJSON((array)'Отдел создан');
             }
         }
     }

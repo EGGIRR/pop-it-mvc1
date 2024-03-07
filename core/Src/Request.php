@@ -22,7 +22,7 @@ class Request
         return $this->body + $this->files();
     }
 
-    public function set($field, $value):void
+    public function set($field, $value): void
     {
         $this->body[$field] = $value;
     }
@@ -43,5 +43,10 @@ class Request
             return $this->body[$key];
         }
         throw new Error('Accessing a non-existent property');
+    }
+
+    public function bearerToken(): string
+    {
+        return explode(' ',$this->headers['Authorization'])[1] ?? '';
     }
 }

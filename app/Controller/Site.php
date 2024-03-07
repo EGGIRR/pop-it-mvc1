@@ -16,6 +16,7 @@ class Site
     {
         return new View('site.hello');
     }
+
     public function signup(Request $request): string
     {
         $roles = Role::all();

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Мар 06 2024 г., 15:13
--- Версия сервера: 10.4.32-MariaDB
--- Версия PHP: 8.2.12
+-- Хост: localhost
+-- Время создания: Мар 06 2024 г., 21:23
+-- Версия сервера: 8.0.29-0ubuntu0.20.04.3
+-- Версия PHP: 8.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `mvc`
+-- База данных: `gihbdmnb_m4`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `departments` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `type` varchar(100) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,13 +41,13 @@ INSERT INTO `departments` (`id`, `name`, `type`) VALUES
 (3, 'Отдел математических наук', 'Внутренний'),
 (4, 'Отдел истории', 'Внутренний'),
 (5, 'Отдел биологии', 'Внутренний'),
-(6, 'админ', 'Внутренний'),
-(7, 'Отдел наук', 'Внутренний'),
-(8, 'Отдел выф', 'Внутренний'),
-(9, 'Отдел выф', 'Внутренний'),
-(10, 'Отдел выф', 'Внутренний'),
-(11, 'Отдел выф', 'Внутренний'),
-(12, 'Отдел физра', 'Внутренний');
+(6, 'Дааа', 'Внутренний'),
+(7, 'Отдел', 'Обособленный'),
+(8, 'Отдел физра', 'Внутренний'),
+(9, 'Отдел физраы', 'Внутренний'),
+(10, 'Отдел физраыф', 'Внутренний'),
+(11, 'Отдел физраыфы', 'Внутренний'),
+(12, 'Отдел выф', 'Внутренний');
 
 -- --------------------------------------------------------
 
@@ -56,17 +56,17 @@ INSERT INTO `departments` (`id`, `name`, `type`) VALUES
 --
 
 CREATE TABLE `employees` (
-  `id` int(11) NOT NULL,
-  `fname` varchar(100) NOT NULL,
-  `lname` varchar(100) NOT NULL,
-  `patronymic` varchar(100) NOT NULL,
+  `id` int NOT NULL,
+  `fname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `patronymic` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `gender` tinyint(1) NOT NULL,
   `birthdate` date NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `department_id` int(11) NOT NULL,
-  `structure_id` int(11) NOT NULL
+  `address` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `avatar` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `post_id` int NOT NULL,
+  `department_id` int NOT NULL,
+  `structure_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -74,8 +74,20 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `fname`, `lname`, `patronymic`, `gender`, `birthdate`, `address`, `avatar`, `post_id`, `department_id`, `structure_id`) VALUES
-(27, 'Владислав', 'Гришаненко', 'Евгеньевич', 2, '2004-08-18', 'Красноярская 51', 'images/Да.png', 2, 3, 2),
-(30, 'Владислав', 'Гришаненко', 'Евгеньевич', 2, '2001-02-18', 'Красноярская 51', 'images/фыв.png', 2, 3, 2);
+(2, 'Алексей', 'солдатов', 'Романович', 1, '2001-05-02', 'Южка 29', '', 2, 3, 2),
+(3, 'Владислав', 'Гришаненко', 'Евгеньевич', 1, '2004-08-18', 'Красноярская 51', '', 2, 4, 4),
+(4, 'Игорь', 'Комисаров', 'Андреевич', 1, '1991-02-20', 'Вахта 28', '1.png', 2, 5, 3),
+(5, 'dsa', 'dsa', 'dsa', 1, '2231-02-22', 'dsadsa', 'Array', 2, 3, 2),
+(6, 'dsada', 'dsada', 'dsad', 1, '1111-11-11', 'dsa', 'Array', 2, 3, 2),
+(7, 'dsadas', 'dasd', 'asdas', 1, '0012-12-11', 'dasasd', 'Array', 2, 3, 2),
+(8, 'dsa', 'dsa', 'dsa', 1, '0132-02-23', 'dsa', 'Array', 2, 3, 2),
+(9, 'dsa', 'dsa', 'dsa', 1, '0213-02-12', 'dsa', 'Array', 2, 3, 2),
+(10, 'выфв', 'выф', 'выф', 2, '0011-03-22', 'выф', 'Array', 2, 3, 2),
+(11, 'выф', 'выфв', 'выф', 2, '0022-02-22', 'выф', 'Array', 2, 3, 2),
+(12, 'выф', 'выф', 'выф', 2, '0022-02-22', 'вф', 'Array', 2, 3, 2),
+(13, 'выф', 'выф', 'выф', 2, '0021-02-22', 'выф', 'images/211.png', 2, 3, 2),
+(14, 'выфв', 'выф', 'выф', 2, '0002-02-22', 'выф', 'images/321312.png', 2, 3, 2),
+(15, 'выфвыф', 'выфвыф', 'выфв', 2, '0021-12-31', 'выфвыф', 'images/321312.png', 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -84,8 +96,8 @@ INSERT INTO `employees` (`id`, `fname`, `lname`, `patronymic`, `gender`, `birthd
 --
 
 CREATE TABLE `posts` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -93,7 +105,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `name`) VALUES
-(2, 'Учёный');
+(2, 'Учёный'),
+(3, 'Да');
 
 -- --------------------------------------------------------
 
@@ -102,9 +115,9 @@ INSERT INTO `posts` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `roles` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `roles`
@@ -121,8 +134,8 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `structures` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -133,12 +146,10 @@ INSERT INTO `structures` (`id`, `name`) VALUES
 (2, 'Математика'),
 (3, 'Биология'),
 (4, 'История'),
-(5, 'География'),
-(6, 'Отдел физра'),
-(7, '<script><script>'),
-(8, '<script><scriipt>'),
-(9, '<scrpipt><scriipt>'),
-(10, '&lt;crpipt&gt;&lt;scriipt&gt;');
+(5, 'Да'),
+(6, 'Математика'),
+(7, 'Математика'),
+(8, 'Математика');
 
 -- --------------------------------------------------------
 
@@ -147,12 +158,12 @@ INSERT INTO `structures` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `login` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `token` varchar(255) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `login` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `role_id` int NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -160,8 +171,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `login`, `password`, `role_id`, `token`) VALUES
-(93, 'Владислав', 'eggi', '202cb962ac59075b964b07152d234b70', 2, ''),
-(94, 'Владислав', 'eggirr', '202cb962ac59075b964b07152d234b70', 2, '');
+(6, 'Владислав', 'eggirr', '202cb962ac59075b964b07152d234b70', 2, ''),
+(11, 'Влад', 'vlad', '202cb962ac59075b964b07152d234b70', 1, ''),
+(12, 'Ada', 'ada', '202cb962ac59075b964b07152d234b70', 2, ''),
+(13, 'qwe', 'qwe', '202cb962ac59075b964b07152d234b70', 2, ''),
+(14, 'Владик', 'vladik', '202cb962ac59075b964b07152d234b70', 2, ''),
+(15, 'Да', 'eji', '202cb962ac59075b964b07152d234b70', 1, ''),
+(23, 'Владислав', 'eggi', '202cb962ac59075b964b07152d234b70', 2, NULL),
+(24, 'Владислав', 'eggi2', '202cb962ac59075b964b07152d234b70', 2, '');
 
 --
 -- Индексы сохранённых таблиц
@@ -216,31 +233,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `structures`
 --
 ALTER TABLE `structures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

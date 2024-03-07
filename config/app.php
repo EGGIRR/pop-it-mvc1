@@ -24,6 +24,7 @@ return [
         'russian' => \Validators\RusValidator::class
     ],
     'routeAppMiddleware' => [
+//        'TokenCheckMiddleware' => \Middlewares\TokenCheckMiddleware::class,
         'csrf' => \Middlewares\CSRFMiddleware::class,
         'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
         'trim' => \Middlewares\TrimMiddleware::class,
