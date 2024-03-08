@@ -603,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "385a67f5351be38c5c6f28d58f7d76cbaffcaa02"
+                "reference": "2f27697a8194d9233fcbd9f2df2614db5daf7308"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/385a67f5351be38c5c6f28d58f7d76cbaffcaa02",
-                "reference": "385a67f5351be38c5c6f28d58f7d76cbaffcaa02",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/2f27697a8194d9233fcbd9f2df2614db5daf7308",
+                "reference": "2f27697a8194d9233fcbd9f2df2614db5daf7308",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +668,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-03-04T21:32:24+00:00"
+            "time": "2024-03-07T16:39:23+00:00"
         },
         {
             "name": "illuminate/events",
@@ -825,12 +825,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "a98f849a2a0f36fbcbec77d07cae680e240ccdc1"
+                "reference": "5299d85c273df502c90312241615f0db70954d64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/a98f849a2a0f36fbcbec77d07cae680e240ccdc1",
-                "reference": "a98f849a2a0f36fbcbec77d07cae680e240ccdc1",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/5299d85c273df502c90312241615f0db70954d64",
+                "reference": "5299d85c273df502c90312241615f0db70954d64",
                 "shasum": ""
             },
             "require": {
@@ -888,7 +888,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-03-02T00:22:09+00:00"
+            "time": "2024-03-07T16:58:40+00:00"
         },
         {
             "name": "myclabs/deep-copy",

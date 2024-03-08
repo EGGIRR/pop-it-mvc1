@@ -10,10 +10,17 @@ class TokenCheckMiddleware
 {
     public function handle(Request $request)
     {
-        $token = $request->bearerToken();
         $user = Auth::user();
-        if($token !== $user->getToken()){
-            (new View())->toJSON(['message' => 'Вы не авторизованны']);
+
+        // Получаем путь текущего маршрута
+        $path = $request->getPath();
+
+        // Проверяем, что текущий маршрут не является /login
+        if ($path !== '/login' && $user) {
+            $token = $request->bearerToken();
+            if ($token !== $user->getToken()) {
+                (new View())->toJSON(['message' => 'Неверный токен']);
+            }
         }
     }
 }

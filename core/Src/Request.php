@@ -49,4 +49,15 @@ class Request
     {
         return explode(' ',$this->headers['Authorization'])[1] ?? '';
     }
+    public function getPath(): string
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        $position = strpos($uri, '?');
+        if ($position !== false) {
+            $path = substr($uri, 0, $position);
+        } else {
+            $path = $uri;
+        }
+        return $path;
+    }
 }
