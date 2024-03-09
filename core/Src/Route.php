@@ -69,7 +69,6 @@ class Route
         Middleware::single()->add($this->currentHttpMethod, $this->currentRoute, $middlewares);
         return $this;
     }
-
     public function start(): void
     {
         // Fetch method and URI from somewhere
@@ -84,7 +83,6 @@ class Route
         $uri = substr($uri, strlen($this->prefix));
 
         $dispatcher = new Dispatcher($this->routeCollector->getData());
-
         $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:

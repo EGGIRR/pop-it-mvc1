@@ -19,7 +19,6 @@ class Middleware
     {
         $this->middlewareCollector->addRoute($httpMethod, $route, $action);
     }
-
     public function group(string $prefix, callable $callback): void
     {
         $this->middlewareCollector->addGroup($prefix, $callback);
@@ -73,5 +72,4 @@ class Middleware
         }
         return $request;
     }
-
 }

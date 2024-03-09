@@ -25,11 +25,20 @@ class RouteProvider extends AbstractProvider
             });
             return;
         }
+        if ($this->checkPrefix('/loginapi')) {
+            require_once __DIR__ . '/../..' . $this->app->settings->getRoutePath() . '/login.php';
+            $this->app->settings->removeAppMiddleware('TokenCheckMiddleware');
+//            Route::group('/loginapi', function () {
+//                require_once __DIR__ . '/../..' . $this->app->settings->getRoutePath() . '/login.php';
+//            });
+            return;
+        }
         if ($this->checkPrefix('/')) {
             require_once __DIR__ . '/../..' . $this->app->settings->getRoutePath() . '/web.php';
             $this->app->settings->removeAppMiddleware('TokenCheckMiddleware');
             return;
         }
+
 
         //Загружаем маршруты из стандартного файла
         require_once __DIR__ . '/../..' . $this->app->settings->getRoutePath() . '/web.php';

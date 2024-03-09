@@ -31,5 +31,4 @@ return [
         'json' => \Middlewares\JSONMiddleware::class,
     ],
 
-
 ];

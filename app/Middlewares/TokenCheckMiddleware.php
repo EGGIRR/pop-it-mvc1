@@ -11,15 +11,12 @@ class TokenCheckMiddleware
     public function handle(Request $request)
     {
         $user = Auth::user();
-
-        // Получаем путь текущего маршрута
-        $path = $request->getPath();
-
-        // Проверяем, что текущий маршрут не является /login
-        if ($path !== '/login' && $user) {
+        if ($user) {
             $token = $request->bearerToken();
             if ($token !== $user->getToken()) {
                 (new View())->toJSON(['message' => 'Неверный токен']);
+            }else{
+                (new View())->toJSON(['message' => 'Вы не автоизировались!']);
             }
         }
     }

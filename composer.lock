@@ -603,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "2f27697a8194d9233fcbd9f2df2614db5daf7308"
+                "reference": "087780024675f76b7f9cf7c2aa07068c07e650cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/2f27697a8194d9233fcbd9f2df2614db5daf7308",
-                "reference": "2f27697a8194d9233fcbd9f2df2614db5daf7308",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/087780024675f76b7f9cf7c2aa07068c07e650cd",
+                "reference": "087780024675f76b7f9cf7c2aa07068c07e650cd",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +668,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-03-07T16:39:23+00:00"
+            "time": "2024-03-08T20:24:57+00:00"
         },
         {
             "name": "illuminate/events",
@@ -1629,12 +1629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "15b2ae8d7ed6a6d9f523d99b7803a12a104a4f0d"
+                "reference": "62172233843a2dcdcde7af9618f9a7df17280178"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/15b2ae8d7ed6a6d9f523d99b7803a12a104a4f0d",
-                "reference": "15b2ae8d7ed6a6d9f523d99b7803a12a104a4f0d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/62172233843a2dcdcde7af9618f9a7df17280178",
+                "reference": "62172233843a2dcdcde7af9618f9a7df17280178",
                 "shasum": ""
             },
             "require": {
@@ -1722,7 +1722,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-06T06:50:56+00:00"
+            "time": "2024-03-08T16:28:36+00:00"
         },
         {
             "name": "psr/clock",
